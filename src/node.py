@@ -26,8 +26,15 @@ class Plot():
             self.accuracy.append(msg.accuracy)
             self.loss.append(msg.loss)
         else:
-            plt.plot(self.iteration, self.accuracy)
-            plt.plot(self.iteration, self.loss)
+            # draw graph
+            plt.plot(self.iteration, self.accuracy,
+                    linestyle='-',
+                    linewidth=2,
+                    color='deepskyblue')
+            plt.plot(self.iteration, self.loss,
+                    linestyle='--',
+                    linewidth=2,
+                    color='hotpink')
 
             plt.title("Learning Rate")
             plt.xlabel("Iteration")
@@ -38,8 +45,9 @@ class Plot():
             
             path = os.path.join(
                 rospkg.RosPack().get_path('learning_plotting_ros'), 'figure')
-
-            plt.savefig("%s/learning.png"%path, dpi=350)
+            
+            # save learning figure
+            # plt.savefig("%s/learning.png"%path, dpi=350)
             plt.show()
 
             rospy.signal_shutdown('record completed.')
